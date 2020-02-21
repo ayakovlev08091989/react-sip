@@ -55,6 +55,7 @@ export default class SipProvider extends React.Component<
     callStatus: CallStatus;
     callDirection: CallDirection | null;
     callCounterpart: string | null;
+    sipId: string | null;
     rtcSession;
   }
 > {
@@ -119,6 +120,7 @@ export default class SipProvider extends React.Component<
       callStatus: CALL_STATUS_IDLE,
       callDirection: null,
       callCounterpart: null,
+      sipId: null,
     };
 
     this.ua = null;
@@ -137,6 +139,7 @@ export default class SipProvider extends React.Component<
         status: this.state.callStatus,
         direction: this.state.callDirection,
         counterpart: this.state.callCounterpart,
+        sipId: this.state.sipId,
       },
       registerSip: this.registerSip,
       unregisterSip: this.unregisterSip,
@@ -436,6 +439,7 @@ export default class SipProvider extends React.Component<
             callStatus: CALL_STATUS_STARTING,
             callCounterpart:
               foundUri.substring(0, delimiterPosition) || foundUri,
+            sipId: rtcRequest.from._uri._user,
           });
         } else if (originator === "remote") {
           const foundUri = rtcRequest.from.toString();
@@ -445,6 +449,7 @@ export default class SipProvider extends React.Component<
             callStatus: CALL_STATUS_STARTING,
             callCounterpart:
               foundUri.substring(0, delimiterPosition) || foundUri,
+            sipId: rtcRequest.from._uri._user,
           });
         }
 
@@ -471,6 +476,7 @@ export default class SipProvider extends React.Component<
             callStatus: CALL_STATUS_IDLE,
             callDirection: null,
             callCounterpart: null,
+            sipId: null,
           });
         });
 
@@ -484,6 +490,7 @@ export default class SipProvider extends React.Component<
             callStatus: CALL_STATUS_IDLE,
             callDirection: null,
             callCounterpart: null,
+            sipId: null,
           });
         });
 
