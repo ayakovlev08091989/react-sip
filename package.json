@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && tsc --project .",
+    "build": "rimraf dist && tsc --project ./src",
     "build:watch": "rimraf dist && tsc --project . --watch",
     "format": "prettier --write --ignore-path .gitignore \"{.,src/**}/{*.js,*.ts,*.md,*.json}\"",
     "lint": "tsc --project . --noEmit && tslint --project . && prettier-check --ignore-path .gitignore \"{.,src/**}/{*.js,*.ts,*.md,*.json}\"",
